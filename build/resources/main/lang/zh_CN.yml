@@ -1,0 +1,22 @@
+Noun:
+  Vault: "Vault"
+  Vault-Economy-Provider: "Vault Economy Provider"
+  PlayerPoints: "PlayerPoints"
+
+Console:
+  Error:
+    Economy-Service-NotFound: "&4未找到经济插件: {0}"
+    Economy-Service-Unknown: "&4未知的经济插件: {0}"
+
+Player:
+  Success:
+    Economy-Acquire:
+      vault: '{0} &a获得{0}金币'
+      playerpoints: '{0} &a获得{0}点券'
+
+  Error:
+    Internal: "{0} &4插件出现内部错误"
+
+    Economy-Insufficient:
+      vault: '{0} &4您的金币不足!'
+      playerpoints: '{0} &4您的点券不足!'
