@@ -1,6 +1,9 @@
 package github.samyycx.fisherman.modules.command
 
+import github.samyycx.fisherman.Main
+import github.samyycx.fisherman.modules.config.ConfigManager
 import github.samyycx.fisherman.modules.gameconfig.fish.FishConfigManager
+import github.samyycx.fisherman.modules.gameconfig.fishgroup.FishGroupExecutor
 import github.samyycx.fisherman.utils.KetherUtils
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
@@ -37,8 +40,18 @@ object FishCommand {
     @CommandBody
     val reload = subCommand {
         execute<CommandSender> { sender, _, _ ->
-            FishConfigManager.setup()
-            FishConfigManager.test()
+            ConfigManager.setup(Main.plugin)
+        }
+    }
+
+    @CommandBody
+    val group = subCommand {
+
+        dynamic(optional = false) {
+            execute<Player> { player, _, argument ->
+                val result = FishGroupExecutor.executeFishGroup(player, argument)
+                player.sendMessage(result.toString())
+            }
         }
     }
 

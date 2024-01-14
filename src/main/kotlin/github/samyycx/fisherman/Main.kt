@@ -12,7 +12,7 @@ import taboolib.platform.BukkitPlugin
 object Main : Plugin() {
 
     val prefix = "&e[&bFisherman&e]".colored()
-    private val plugin by lazy { BukkitPlugin.getInstance() }
+    val plugin by lazy { BukkitPlugin.getInstance() }
 
     override fun onLoad() {
 
