@@ -4,7 +4,6 @@ import org.bukkit.Bukkit
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import taboolib.module.lang.Level
-import taboolib.platform.BukkitPlugin
 import taboolib.platform.util.sendLang
 import java.io.File
 
@@ -12,15 +11,13 @@ object FishConfigManager {
 
     private val configs = mutableMapOf<String, FishConfig>()
 
-    fun setup() {
+    fun setup(folder: File) {
 
         configs.clear()
 
-        val dataFolder = File(BukkitPlugin.getInstance().dataFolder, "fish")
-
         val configNeedTemplates = mutableMapOf<String, MutableList<ConfigurationSection>>()
 
-        dataFolder
+        folder
             .listFiles { _, name -> name.endsWith(".yml") }
             ?.forEach {
                 val config = YamlConfiguration.loadConfiguration(it)
@@ -72,6 +69,14 @@ object FishConfigManager {
 
     fun test() {
         println(configs)
+    }
+
+    fun contains(id: String): Boolean {
+        return configs.containsKey(id)
+    }
+
+    fun getById(id: String): FishConfig? {
+        return configs[id]
     }
 
 }
