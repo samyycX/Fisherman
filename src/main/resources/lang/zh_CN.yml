@@ -5,6 +5,8 @@ Noun:
 
 Console:
   Error:
+    Fish-Config-Field-NotFound: "&4{0} 鱼类的 {0} 字段配置缺失或出现错误"
+    Fish-Template-Unknown: "&4未知的鱼类配置模板: {0}"
     Economy-Service-NotFound: "&4未找到经济插件: {0}"
     Economy-Service-Unknown: "&4未知的经济插件: {0}"
 

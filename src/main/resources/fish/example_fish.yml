@@ -1,11 +1,11 @@
 奇异箭鱿:
-  name: '&7奇异箭鱿'
-  material: FISH
-  cook:
-    name: '&7煮熟的奇异箭鱿'
-    material: FISH_COOKED
+  base:
+    name: '&7奇异箭鱿'
+    material: SQUID
     description:
-      - "新简介"
+      - "一条稀有的鱼类"
+  cooked:
+    name: '&7煮熟的奇异箭鱿'
   attribute:
     length:
       value: 'random 1 to 10'
@@ -13,8 +13,6 @@
     weight:
       value: 'random math mul [0.8 &length] to math mul [1.2 &length]'
       lore: '重量: {value}'
-  description:
-    - "一条稀有的鱼类"
   value:
     vault:
       - 'math mul 0.8*{{ length }}'
@@ -27,3 +25,14 @@
       - ''
     onEatCooked:
       - ''
+
+奇异箭鱿-特殊:
+  template: 奇异箭鱿
+  base:
+    name: '&7奇异箭鱿-特殊'
+  event:
+    onFished:
+      - '123123!!!!!!'
+  value:
+    vault:
+      - 'math mul 1.2*{{ &length }}'

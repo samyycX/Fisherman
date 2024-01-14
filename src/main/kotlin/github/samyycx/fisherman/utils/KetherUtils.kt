@@ -23,4 +23,8 @@ object KetherUtils {
             CompletableFuture.completedFuture(false)
         }
     }
+
+    fun Player.ketherVars(): Pair<String, Player> {
+        return "player" to this
+    }
 }
