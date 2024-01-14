@@ -23,6 +23,8 @@ dependencies {
 
     compileOnly(kotlin("stdlib"))
     compileOnly(fileTree("libs"))
+
+    taboo("org.apache.commons:commons-math3:3.6.1")
 }
 
 tasks.test {
