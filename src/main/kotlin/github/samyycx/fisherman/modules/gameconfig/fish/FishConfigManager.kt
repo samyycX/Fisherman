@@ -3,6 +3,7 @@ package github.samyycx.fisherman.modules.gameconfig.fish
 import org.bukkit.Bukkit
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
+import taboolib.module.chat.colored
 import taboolib.module.lang.Level
 import taboolib.platform.util.sendLang
 import java.io.File
@@ -77,6 +78,25 @@ object FishConfigManager {
 
     fun getById(id: String): FishConfig? {
         return configs[id]
+    }
+
+    /**
+     * Pair的第一个是配置
+     * Pair的第二个是是否是烤过的鱼
+     */
+    fun getByName(name: String?): Pair<FishConfig, Boolean>? {
+
+        if (name == null) return null
+
+        configs.values.forEach {
+            if (it.base!!.name!!.colored() == name) {
+                return it to false
+            } else if (it.cooked?.name!!.colored() == name) {
+                return it to true
+            }
+        }
+
+        return null
     }
 
 }
