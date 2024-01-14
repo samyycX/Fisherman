@@ -54,4 +54,5 @@ taboolib {
     install("module-lang")
 
     install("expansion-command-helper")
+    install("expansion-javascript")
 }
