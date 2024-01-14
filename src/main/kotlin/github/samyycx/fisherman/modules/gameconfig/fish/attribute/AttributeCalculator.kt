@@ -5,12 +5,13 @@ import org.bukkit.entity.Player
 
 object AttributeCalculator {
 
-    fun calculateAttributes(player: Player, attributes: Map<String, Attribute>) : Map<String, Double> {
+    fun calculateAttributes(player: Player, attributes: Map<String, Attribute>?) : MutableMap<String, Double> {
+
         val result = mutableMapOf<String, Double>()
 
-        attributes.forEach { (id, attribute) ->
+        attributes?.forEach { (id, attribute) ->
             val value = KetherUtils.eval(player, attribute.valueFormula, *result.toList().toTypedArray()).get()
-            result[id] = value as Double
+            result[id] = value.toString().toDouble()
         }
 
         return result

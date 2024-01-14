@@ -15,6 +15,7 @@ object KetherUtils {
                 variables.forEach {
                     set(it.first, it.second)
                 }
+                set("player", player)
             }
         } catch (e: LocalizedException) {
             e.localizedMessage.split("\n").forEach {

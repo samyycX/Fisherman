@@ -27,8 +27,7 @@ object FishGroupExecutor {
 
         if (group.condition.isNotEmpty()) {
             var available = KetherUtils.eval(player,
-                group.condition,
-                "player" to player
+                group.condition
             ).get()
             println(available)
             available = available.toString().toBooleanStrict()
