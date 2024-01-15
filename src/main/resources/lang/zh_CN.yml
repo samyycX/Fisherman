@@ -5,6 +5,7 @@ Noun:
 
 Console:
   Error:
+    Condition-Invalid: "&4{0} 配置中的最后一行条件 {0} 的值不是布尔类型，无法解析"
     FishGroup-NotFound: "&4未知的鱼类组 {0}"
     Fish-Config-Field-NotFound: "&4{0} 鱼类的 {0} 字段配置缺失或出现错误"
     Fish-Template-Unknown: "&4未知的鱼类配置模板: {0}"
@@ -14,12 +15,14 @@ Console:
 Player:
   Success:
     Economy-Acquire:
-      vault: '{0} &a获得{0}金币'
-      playerpoints: '{0} &a获得{0}点券'
+      vault: '&a获得{0}金币'
+      playerpoints: '&a获得{0}点券'
 
   Error:
-    Internal: "{0} &4插件出现内部错误"
+    Internal: "&4插件出现内部错误"
 
     Economy-Insufficient:
-      vault: '{0} &4您的金币不足!'
-      playerpoints: '{0} &4您的点券不足!'
+      vault: '&4您的金币不足!'
+      playerpoints: '&4您的点券不足!'
+
+    Condition-Unsatisfied: "&4您未满足使用 {0} 的条件"

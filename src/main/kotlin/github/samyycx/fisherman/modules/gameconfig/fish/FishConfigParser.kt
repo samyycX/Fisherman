@@ -1,9 +1,11 @@
 package github.samyycx.fisherman.modules.gameconfig.fish
 
+import github.samyycx.fisherman.modules.config.ConfigManager
 import github.samyycx.fisherman.modules.gameconfig.fish.attribute.Attribute
 import github.samyycx.fisherman.modules.gameconfig.fish.attribute.AttributeParser
 import github.samyycx.fisherman.modules.gameconfig.fish.basic.FishBaseParser
 import github.samyycx.fisherman.modules.gameconfig.fish.event.FishEventsParser
+import github.samyycx.fisherman.modules.lang.OtherUtils.maskObject
 import org.bukkit.Bukkit
 import org.bukkit.configuration.ConfigurationSection
 import taboolib.library.reflex.Reflex.Companion.unsafeInstance
@@ -62,7 +64,10 @@ object FishConfigParser {
             val newAttributeMap = mutableMapOf<String, Attribute>()
 
             for (attributeId in it.getKeys(false)) {
-                val attribute = AttributeParser.parseSection(it.getConfigurationSection(attributeId)!!)
+                var attribute = AttributeParser.parseSection(it.getConfigurationSection(attributeId)!!)
+                val defaultAttribute = ConfigManager.default.getConfigurationSection("FishAttributes")
+                    ?.let { it1 -> AttributeParser.parseSection(it1) }
+                attribute = maskObject(defaultAttribute, attribute)!!
                 newAttributeMap[attributeId] = if (fishConfig.attributes != null) {
                     maskObject(fishConfig.attributes!![attributeId], attribute)!!
                 } else {
@@ -94,7 +99,6 @@ object FishConfigParser {
         }
 
         return null to fishConfig
-
     }
 
     /**
@@ -102,35 +106,7 @@ object FishConfigParser {
      * new和original应该为同类
      * 特别的，如果这个类中的属性有List，则判断List不为空的时候才遮蔽
      */
-    @Suppress("UNCHECKED_CAST", "UNNECESSARY_NOT_NULL_ASSERTION")
-    private fun <T> maskObject(original: T?, new: T?): T? {
 
-        if (original == null) {
-            return new
-        }
-        if (new == null) {
-            return null
-        }
-        val result = new!!::class.java.unsafeInstance() as T
-
-        fun <T> replacement(originalValue: T?, newValue: T): T? {
-            if (newValue is List<*>) {
-                return newValue.ifEmpty { originalValue }
-            }
-            return newValue ?: originalValue
-        }
-        new!!::class.java.declaredFields
-            .forEach {
-                it.isAccessible = true
-                val originalValue = it.get(original)
-                val newValue = it.get(new)
-                val f = result!!::class.java.getDeclaredField(it.name)
-                f.isAccessible = true
-                f.set(result, replacement(originalValue, newValue))
-            }
-
-        return result
-    }
 
 
 }

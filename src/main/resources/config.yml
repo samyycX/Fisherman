@@ -1,2 +1,4 @@
-kether:
-  - "math mul [1 2]"
+Prefix: "&e[&bFisherman&e] "
+DefaultFishAttribute:
+  length:
+    
