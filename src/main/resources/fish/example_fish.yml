@@ -8,7 +8,7 @@
     name: '&7煮熟的奇异箭鱿'
   attribute:
     length:
-      value: 'random 1 to 10'
+      value: 'betadistribution 1 to 10 alpha math mul [ 50 &lucky ] beta math mul [ 50 &lucky ]'
       lore: '长度: {value}'
     weight:
       value: 'random math mul [0.8 &length] to math mul [1.2 &length]'

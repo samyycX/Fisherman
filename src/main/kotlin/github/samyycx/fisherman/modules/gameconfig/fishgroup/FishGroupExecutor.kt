@@ -1,5 +1,6 @@
 package github.samyycx.fisherman.modules.gameconfig.fishgroup
 
+import github.samyycx.fisherman.modules.gameconfig.condition.ConditionExecutor
 import github.samyycx.fisherman.modules.gameconfig.fish.FishConfig
 import github.samyycx.fisherman.modules.gameconfig.fish.FishConfigManager
 import github.samyycx.fisherman.utils.KetherUtils
@@ -26,11 +27,12 @@ object FishGroupExecutor {
         }
 
         if (group.condition.isNotEmpty()) {
-            var available = KetherUtils.eval(player,
+
+            val available = ConditionExecutor.ifSatisfied(
+                player,
+                "fishgroup -> ${group.id}",
                 group.condition
-            ).get()
-            println(available)
-            available = available.toString().toBooleanStrict()
+            )
             if (!available) { return null }
 
             player.world.hasStorm()

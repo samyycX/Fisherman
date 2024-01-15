@@ -3,6 +3,7 @@ package github.samyycx.fisherman.modules.economy
 import github.samyycx.fisherman.Main
 import github.samyycx.fisherman.modules.economy.impl.PlayerPointsEconomyProvider
 import github.samyycx.fisherman.modules.economy.impl.VaultEconomyProvider
+import github.samyycx.fisherman.modules.lang.LangUtils.sendPrefixedLang
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import taboolib.platform.util.sendLang
@@ -40,13 +41,13 @@ object EconomyProviderManager {
         map.forEach { (service, amount) ->
             if (service !in providers) {
                 Bukkit.getConsoleSender().sendLang("Console.Unknown-Economy-Service", service)
-                player.sendLang("Player.Error.Internal", Main.prefix)
+                player.sendPrefixedLang("Player.Error.Internal", Main.prefix)
                 pass = false
                 return@forEach
             }
 
             if (!providers[service]!!.playerHasEconomy(player, amount)) {
-                player.sendLang("Player.Error.Insufficient-Economy.$service")
+                player.sendPrefixedLang("Player.Error.Insufficient-Economy.$service")
                 pass = false
             }
         }
@@ -66,7 +67,7 @@ object EconomyProviderManager {
                 Bukkit.getConsoleSender().sendLang("Console.Unknown-Economy-Service", service)
             } else {
                 providers[service]!!.givePlayerEconomy(player, amount)
-                player.sendLang("Player.Success.Economy-Acquire", Main.prefix, amount)
+                player.sendPrefixedLang("Player.Success.Economy-Acquire", Main.prefix, amount)
             }
         }
     }

@@ -1,5 +1,6 @@
 package github.samyycx.fisherman.modules.gameconfig.fish.attribute
 
+import github.samyycx.fisherman.modules.config.ConfigManager
 import org.bukkit.configuration.ConfigurationSection
 
 

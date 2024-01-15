@@ -1,0 +1,11 @@
+BetaDistribution:
+  alpha: 50
+  beta: 50
+
+FishAttributes:
+  length:
+    lore: "长度: {value}"
+  weight:
+    lore: "重量: {value}"
+
+Statistics:
